@@ -1,0 +1,29 @@
+local RunService = game:GetService("RunService")
+
+for i,v in pairs(game['ReplicatedStorage'].ACS_Engine:GetDescendants()) do
+    if v.Name == "MedSys" then
+        if v:FindFirstChild("Stance") then
+            remote = v.Stance
+        end
+    end
+end
+
+local args = {
+    [1] = 2,
+    [2] = 0,
+    [3] = false
+}
+
+local args1 = {
+    [1] = 0,
+    [2] = 0,
+    [3] = false
+}
+
+
+RunService.RenderStepped:Connect(function(step)
+    RunService.RenderStepped:Connect(function(step)
+        remote:FireServer(unpack(args))
+        remote:FireServer(unpack(args1))
+    end)
+end)
